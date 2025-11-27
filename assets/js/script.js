@@ -1,4 +1,4 @@
-//Auteu: André Armendariz-Jasso
+//Auteur: André Armendariz-Jasso
 
 let oCanvasHTML = document.querySelector("canvas");
 let oContexte = oCanvasHTML.getContext("2d");
@@ -116,7 +116,7 @@ let oGOson = new Audio();
 oGOson.src = "assets/audio/glitch.wav";
 
 let oGoodSound = new Audio();
-oGoodSound.src = "assets/audio/GoodEnd.wav";
+oGoodSound.src = "assets/audio/goodEnd.wav";
 
 //Initialiser
 function initialiser() {
