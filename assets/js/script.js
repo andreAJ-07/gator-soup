@@ -120,7 +120,7 @@ oGoodSound.src = "assets/audio/goodEnd.wav";
 
 //Initialiser
 function initialiser() {
-  alert("Welcome to Gator Soup!");
+  alert("Welcome to Gator Soup! Welcome to Gator Soup, a math game! Answer all the equations correctly before the timer ends to not convert your neighbourg's alligator into soup! KEEP THE TEMPERATURE 50");
   melangerTableau(questions);
 
   setInterval(boucleJeu, 1000 / 60);
