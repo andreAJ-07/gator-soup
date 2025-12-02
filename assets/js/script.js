@@ -226,7 +226,7 @@ let questions = [
     points: 1,
   },
   {
-    nom: "The temperature dropped drastically! Current temperature: -72°",
+    nom: "The temperature dropped! Current temperature: -72°",
     reponse: "x -0.69°",
     choix: ["+50°", "x -0.69°", "x1.69°"],
     points: 1,
@@ -250,8 +250,8 @@ function dessinerQuestion() {
 
   oContexte.fillStyle = "red";
   oContexte.textAlign = "center";
-  oContexte.font = "24px Arial";
-  oContexte.fillText(premiereQuestion.nom, nLargeur / 2, nHauteur / 2);
+  oContexte.font = "20px Candal";
+  oContexte.fillText(premiereQuestion.nom, nLargeur / 2, nHauteur / 2 + 150);
 
   for (let i = 0; i < premiereQuestion.choix.length; i++) {
     let elementChoix = premiereQuestion.choix[i];
@@ -261,8 +261,8 @@ function dessinerQuestion() {
 
     oContexte.font = "20px Arial";
     oContexte.fillStyle = "black";
-    oContexte.textAlign = "left";
-    oContexte.fillText(elementChoix, i * (nLargeur / 3), nHauteur / 2 + 85);
+    oContexte.textAlign = "center";
+    oContexte.fillText(elementChoix, i * (nLargeur / 3) + (nLargeur / 6), nHauteur / 2 + 85);
   }
 }
 
@@ -328,6 +328,7 @@ function detecterClicObjet(curseurX, curseurY, objet) {
 //////////////////////////////////
 
 /////jeu questions functions/variables round 2/////
+//ext src: chatgpt
 
 let serveActive = true;
 
@@ -346,7 +347,7 @@ let serveImgs = [
   { src: "assets/images/eye.png", x: 400, y: 500, w: 150, h: 150 },
 ];
 
-serveImgs.forEach((img) => {
+serveImgs.forEach((img) => { 
   img.image = new Image();
   img.image.src = img.src;
 });
@@ -474,7 +475,8 @@ function clicCanvas(evenement) {
 
     instructuionStarted = true;
 
-    oVoisinParle.play();
+    //ext src: chatgpt
+    oVoisinParle.play();                    
     oVoisinParle.onended = function () {
       etatJeu = "jeu";
 
@@ -486,7 +488,12 @@ function clicCanvas(evenement) {
         flicker();
       }
     };
+    //
+
+
   } else if (etatJeu == "instruction") {
+
+    //ext src: chatgpt
     fadeOpacity = 1;
     fadeInActive = true;
 
@@ -494,14 +501,20 @@ function clicCanvas(evenement) {
       flickerStarted = true;
       flicker();
     }
+    //
+
   } else if (etatJeu == "jeu") {
+
+    //ext src: chatgpt
     oClick.currentTime = 0;
     oClick.play();
 
     stopFlicker();
     flickerStarted = false;
+    //
+
   } else if (etatJeu == "finBath") {
-    window.location.reload(true);
+    window.location.reload(true); //ext src: bing copilot search
 
     oClick.currentTime = 0;
     oClick.play();
@@ -511,22 +524,29 @@ function clicCanvas(evenement) {
 
     etatJeu = "serveNow";
 
+    //ext src: chatgpt
     document.body.classList.add("serveNowBG");
     oCanvasHTML.classList.add("serveNowBorder");
     document.body.classList.add("serveNowText");
     document.body.classList.add("serveNowInst");
 
     oCanvasHTML.style.cursor = "url('assets/images/serveCursor.png'), auto";
+    //
+
   } else if (etatJeu == "serveNow") {
     oClickServe.currentTime = 0;
     oClickServe.play();
-    document.body.classList.add("hideText");
+
+    //ext src: chatgpt
+    document.body.classList.add("hideText"); 
 
     let x = evenement.offsetX;
     let y = evenement.offsetY;
-
+  
     clickServeMiniGame(x, y);
     return;
+    //
+
   } else if (etatJeu == "goodEnding") {
     oClickGood.currentTime = 0;
     oClickGood.play();
@@ -546,6 +566,7 @@ function playBeep() {
   oBeep.play();
 }
 
+//ext src: chatgpt
 function flicker() {
   if (!flickerRunning || etatJeu !== "jeu") {
     flickerRunning = false;
@@ -573,6 +594,7 @@ function startFlicker() {
 function stopFlicker() {
   flickerRunning = false;
 }
+//
 
 function updateCursor() {
   oCanvasHTML.style.cursor = "url('assets/images/cursor.png'), auto";
@@ -583,6 +605,7 @@ function updateCursor() {
 function present() {
   oContexte.drawImage(oPresentIMG, 0, 0, nLargeur, nHauteur);
 
+  //ext src: chatgpt
   if (introFadingIn) {
     oContexte.fillStyle = `rgba(0, 0, 0, ${introFade})`;
     oContexte.fillRect(0, 0, nLargeur, nHauteur);
@@ -593,6 +616,7 @@ function present() {
       introFadingIn = false;
     }
   }
+  //
 }
 
 function intro() {
@@ -607,6 +631,7 @@ function intro() {
   oBack1.play();
   oMusique.volume = 0.3;
 
+  //ext src: chatgpt
   if (introFadingIn) {
     oContexte.fillStyle = `rgba(0, 0, 0, ${introFade})`;
     oContexte.fillRect(0, 0, nLargeur, nHauteur);
@@ -617,6 +642,8 @@ function intro() {
       introFadingIn = false;
     }
   }
+  //
+
 }
 
 function dessinerTuile() {
@@ -691,6 +718,7 @@ function jeu() {
   oContexte.textAlign = "left";
   oContexte.fillText(nMinuterie, 50, 50);
 
+  //ext src: chatgpt
   if (!flickerRunning) startFlicker();
 
   if (fadeInActive) {
@@ -703,6 +731,7 @@ function jeu() {
   if (oNoiseGame.paused) oNoiseGame.play();
   if (oLumiere.paused) oLumiere.play();
   oLumiere.volume = 0.6;
+  //
 }
 
 function toobad() {
