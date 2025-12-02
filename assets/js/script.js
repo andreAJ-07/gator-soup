@@ -147,8 +147,10 @@ function boucleJeu() {
   }
 
   if (etatJeu !== "jeu") {
+    //ext src: chatgpt
     if (!oNoiseGame.paused) oNoiseGame.pause();
     if (!oLumiere.paused) oLumiere.pause();
+    //
   }
 
   if (etatJeu == "present") {
@@ -163,16 +165,20 @@ function boucleJeu() {
     dessinerUI();
   } else if (etatJeu == "finBath") {
     finBath();
+    //ext src: chatgpt -> pour ne pas repeter en boucle les sons
     if (!finBathPlayed) {
       oFinSonB1.play();
       finBathPlayed = true;
     }
+    //
   } else if (etatJeu == "finSoup") {
     finSoup();
+    //ext src: chatgpt
     if (!finSoupPlayed) {
       oFinSonS1.play();
       finSoupPlayed = true;
     }
+    //
   } else if (etatJeu == "serveNow") {
     serveNow();
   } else if (etatJeu == "goodEnding") {
@@ -465,17 +471,19 @@ function clicCanvas(evenement) {
   if (etatJeu == "present") {
     etatJeu = "intro";
 
+    //ext src: chatgpt -> fondu du noir a l'etat
     fadeOpacity = 1;
     fadeInActive = true;
+    //
   } else if (etatJeu == "intro") {
-    oClick.currentTime = 0;
+    oClick.currentTime = 0; //ext src: chatgpt
     oClick.play();
 
     etatJeu = "instruction";
 
     instructuionStarted = true;
 
-    //ext src: chatgpt
+    //ext src: chatgpt -> quand le dialogue termine, passer a l'etat suivant + fondu du noir au jeu + "lumiere clignotante" du jeu
     oVoisinParle.play();                    
     oVoisinParle.onended = function () {
       etatJeu = "jeu";
@@ -493,7 +501,7 @@ function clicCanvas(evenement) {
 
   } else if (etatJeu == "instruction") {
 
-    //ext src: chatgpt
+    //ext src: chatgpt -> fondu et "lumiere clignotante" du jeu
     fadeOpacity = 1;
     fadeInActive = true;
 
@@ -505,18 +513,19 @@ function clicCanvas(evenement) {
 
   } else if (etatJeu == "jeu") {
 
-    //ext src: chatgpt
-    oClick.currentTime = 0;
+  
+    oClick.currentTime = 0;  //ext src: chatgpt
     oClick.play();
 
+    //ext src: chatgpt -> arreter la lumiere clignotante du jeu
     stopFlicker();
     flickerStarted = false;
     //
 
   } else if (etatJeu == "finBath") {
-    window.location.reload(true); //ext src: bing copilot search
+    window.location.reload(true); //ext src: bing copilot search (redemarer la page)
 
-    oClick.currentTime = 0;
+    oClick.currentTime = 0; //ext src: chatgpt
     oClick.play();
   } else if (etatJeu == "finSoup") {
     oClickJMP.currentTime = 0;
@@ -524,7 +533,7 @@ function clicCanvas(evenement) {
 
     etatJeu = "serveNow";
 
-    //ext src: chatgpt
+    //ext src: chatgpt -> changer de couleur (css) et de curseur
     document.body.classList.add("serveNowBG");
     oCanvasHTML.classList.add("serveNowBorder");
     document.body.classList.add("serveNowText");
@@ -759,6 +768,7 @@ function finSoup() {
   delayTextSoup();
 }
 
+//note: essayé de trouver comment faire le texte apparaitre apres 3 secondes avec chatgpt, finallement laissé tombé et utiliser l'effet de bug pour delayTextSoup
 function delayTextBath() {
   oContexte.font = "15px Arial";
   oContexte.textAlign = "center";
