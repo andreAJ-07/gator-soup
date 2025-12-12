@@ -120,7 +120,7 @@ oGoodSound.src = "assets/audio/goodEnd.wav";
 
 //Initialiser
 function initialiser() {
-  alert("Welcome to Gator Soup! Welcome to Gator Soup, a math game! Answer all the equations correctly before the timer ends to not convert your neighbour's alligator into soup! KEEP THE TEMPERATURE 50");
+  alert("Welcome to Gator Soup! Welcome to Gator Soup, a math game! Answer all the equations correctly before the timer ends to not convert your neighbourg's alligator into soup! KEEP THE TEMPERATURE 50");
   melangerTableau(questions);
 
   setInterval(boucleJeu, 1000 / 60);
@@ -173,12 +173,11 @@ function boucleJeu() {
     //
   } else if (etatJeu == "finSoup") {
     finSoup();
-    //ext src: chatgpt
+ 
     if (!finSoupPlayed) {
       oFinSonS1.play();
       finSoupPlayed = true;
     }
-    //
   } else if (etatJeu == "serveNow") {
     serveNow();
   } else if (etatJeu == "goodEnding") {
@@ -195,7 +194,6 @@ let indexQuiz = 0;
 let nPoints = 0;
 let questions = [
   {
-    //"Keep the bath water temperature 50°!"//
     nom: "The temperature dropped! Current temperature: 40°",
     reponse: "+10°",
     choix: ["+10°", "x2°", "+11°"],
@@ -334,7 +332,6 @@ function detecterClicObjet(curseurX, curseurY, objet) {
 //////////////////////////////////
 
 /////jeu questions functions/variables round 2/////
-//ext src: chatgpt
 
 let serveActive = true;
 
@@ -476,7 +473,7 @@ function clicCanvas(evenement) {
     fadeInActive = true;
     //
   } else if (etatJeu == "intro") {
-    oClick.currentTime = 0; //ext src: chatgpt
+    oClick.currentTime = 0;
     oClick.play();
 
     etatJeu = "instruction";
@@ -514,7 +511,7 @@ function clicCanvas(evenement) {
   } else if (etatJeu == "jeu") {
 
   
-    oClick.currentTime = 0;  //ext src: chatgpt
+    oClick.currentTime = 0;
     oClick.play();
 
     //ext src: chatgpt -> arreter la lumiere clignotante du jeu
@@ -523,9 +520,9 @@ function clicCanvas(evenement) {
     //
 
   } else if (etatJeu == "finBath") {
-    window.location.reload(true); //ext src: bing copilot search (redemarer la page)
+    window.location.reload(true);
 
-    oClick.currentTime = 0; //ext src: chatgpt
+    oClick.currentTime = 0;
     oClick.play();
   } else if (etatJeu == "finSoup") {
     oClickJMP.currentTime = 0;
@@ -614,7 +611,7 @@ function updateCursor() {
 function present() {
   oContexte.drawImage(oPresentIMG, 0, 0, nLargeur, nHauteur);
 
-  //ext src: chatgpt
+  //ext src: chatgpt (fondu)
   if (introFadingIn) {
     oContexte.fillStyle = `rgba(0, 0, 0, ${introFade})`;
     oContexte.fillRect(0, 0, nLargeur, nHauteur);
@@ -640,7 +637,7 @@ function intro() {
   oBack1.play();
   oMusique.volume = 0.3;
 
-  //ext src: chatgpt
+  //ext src:  (fondu)
   if (introFadingIn) {
     oContexte.fillStyle = `rgba(0, 0, 0, ${introFade})`;
     oContexte.fillRect(0, 0, nLargeur, nHauteur);
@@ -727,7 +724,7 @@ function jeu() {
   oContexte.textAlign = "left";
   oContexte.fillText(nMinuterie, 50, 50);
 
-  //ext src: chatgpt
+  //ext src: chatgpt (clignotant)
   if (!flickerRunning) startFlicker();
 
   if (fadeInActive) {
@@ -760,28 +757,31 @@ function toobad() {
 
 function finBath() {
   oContexte.drawImage(oFinBath, 0, 0, nLargeur, nHauteur);
-  delayTextBath();
+  textBath();
 }
 
 function finSoup() {
   oContexte.drawImage(oFinSoup, 0, 0, nLargeur, nHauteur);
-  delayTextSoup();
+  textSoup();
 }
 
-//note: essayé de trouver comment faire le texte apparaitre apres 3 secondes avec chatgpt, finallement laissé tombé et utiliser l'effet de bug pour delayTextSoup
-function delayTextBath() {
+function textBath() {
   oContexte.font = "15px Arial";
   oContexte.textAlign = "center";
   oContexte.fillStyle = "white";
   oContexte.fillText(`CLICK TO CONTINUE`, nLargeur / 2, nHauteur - 100);
 }
 
-function delayTextSoup() {
+function textSoup() {
   oContexte.font = "15px Arial";
   oContexte.textAlign = "center";
   oContexte.fillStyle = "white";
   oContexte.fillText(`C̵̷̰̜̐̒͆̅̓ͬ́_̵̧̧͍͓̳͕̝͈̒ͪͩ͊ͪ̅̏̄Ḽ̸̡̣̞̗̩̫̹̠̹ͦ͗̋͂͋͗̈̒͂ͫ̈ͨͬ͘I̛͖̼͍̣̔ͥͅ_̢̧̡̗̭͎͖̰͍͇̘ͯ͑́͑ͩͣ̓̆͡C̆ͨͬ̔̚_̡̛̗͙̼͍͉̖͍͖̗͖̠̻̆̏̿̊͑͐̏̒̑̈́̿ͮ͗̕Ḳ̛͚̥̱̬̞̋͝͝ Ţ̶̵̨͍͔͇͇͇̻̯̬̺͑̊͂̌̌͐̈́̓̑̓͌̊͑ͣ̌̚͞O̶̝̘̩͇͇̰̭̺͉ͣ̆̏ͦ͆̄̏ͣ͞ continueC͔̪͖̗̼̺̫̺̎ͬ̍̍ͩͦͯ͢_̨͍͇̗̺̩̞͖̮͉͆̎ͭ̂̏ͪ̇͢͡Ǫ̸̸̵̧̲͉͎͔̩̳͕̠̰͍͛̑̐ͥͬ́̓̽̂̊͂̔ͭ̄ͯ̿̕̕͢͟͟N̲̈̈ͨ_̢̧̱̝̭͖̆ͣͯ̾̀̈́̚T̸̢̛͎̞͚͕͚̲̖̠̻̮͎̞͈̝͛̒́̋͌ͤ̎͌̑ͭ́͑̕͟͢I̻̎_̲̳̻̳͖̥̞̈́̒͒ͯ̏̀̇̈́̈̕͜N͔͔͍̼̙͖̻ͪ͊̐̀̚͜U̴͉̪͇̘̳ͨ͗̽̍̈̾̓͋͋_̮̖̯̯̘͒̀͌̎̃ͧ̂̐́̌̃̏̎ͥ͟͝Ȅ̱̝̱̖̩͈̩̐̆̐̾͜͡`, nLargeur / 2, nHauteur - 100);
-  setTimeout(delayTextSoup, 3000);
+  
+
+  
+
+setTimeout(delayTextSoup, 3000);//chatgpt
 }
 
 function serveNow() {
@@ -795,4 +795,3 @@ function goodEnding() {
 
 // Exécution
 window.addEventListener("load", initialiser);
-
